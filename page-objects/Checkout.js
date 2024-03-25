@@ -12,17 +12,12 @@ export class Checkout {
 
     removeCheapestProduct = async () => {
         const cardsBeforeRemoval = await this.basketCards.count()
-        
-        //gotta be a better way to get the prices in a list.
         const allPriceTexts = await this.basketItemPrice.allInnerTexts()
         const justNumbers = allPriceTexts.map((el) => parseInt(el.replace('$', '')))
         const lowestPrice = Math.min(...justNumbers)
         const lowestPriceIdx = justNumbers.indexOf(lowestPrice)
-
         const itemRemoveButton = this.basketItemRemoveButton.nth(lowestPriceIdx)
         await itemRemoveButton.click()
-
-        // expect specific card is removed and count has decreased
         await expect(this.basketCards).toHaveCount(cardsBeforeRemoval - 1)
     }
 

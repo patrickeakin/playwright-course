@@ -15,7 +15,6 @@ export class Navigation {
     }
 
     goToCheckout = async () => {
-        // if mobile viewport first open burger
         if (!isDesktopViewport(this.page)) {
             await this.mobileBurgerBtn.click()
         }

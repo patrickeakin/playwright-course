@@ -9,7 +9,6 @@ export class MyAccountPage {
     }
 
     visit = async () => {
-        //Make a request to get login token
         await this.page.goto('/my-account')
     }
     
